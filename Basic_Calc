@@ -1,0 +1,49 @@
+#Calculator Program 
+
+def add(x , y): # Add numbers 
+    return x + y
+
+def subtract(x, y): # Subtract numbers 
+    return x - y
+
+def multiply(x, y): # Multiply numbers 
+    return x * y
+
+def divide(x, y): # Divide numbers 
+    return x / y
+
+
+print("Welcome to the Calculator program! \nEnter the number corresponding to what you'd like to do below:")
+
+while True:
+    try:
+        choice = int(input("1. Divide\n2. Multiply\n3. Add\n4. Subtract\n"))
+        if choice in [1,2,3,4]:
+            break
+        else:
+            print("Invalid number picked, try again.")
+            continue
+    except ValueError:
+        print("You didn't enter the corresponding number, try again. ")
+
+
+
+if __name__ == "__main__":
+    # Get input from user
+    num_1 = int(input("Enter the first number: "))
+    num_2 = int(input("Enter a second number: "))
+    result = 0
+
+    if choice == 1: 
+        result = divide(num_1, num_2)
+    elif choice == 2:
+        result = multiply(num_1, num_2)
+    elif choice == 3:
+        result = add(num_1, num_2)
+    else:
+        result = subtract(num_1, num_2)
+
+
+    print(result)        
+
+
