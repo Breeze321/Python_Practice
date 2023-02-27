@@ -1,18 +1,22 @@
-#import libraries
+#imports
 import requests
 from bs4 import BeautifulSoup
 
-query = input("Please enter your query: ")
-url = "https://www.google.com/search?q="+query
+# get the user supplied query
+query = input("Enter a search query: ")
 
-#search results
+# get the search results page
+url = 'https://www.google.com/search?q=' + query
 response = requests.get(url)
+# parse the response with BeautifulSoup
+soup = BeautifulSoup(response.text, 'html.parser')
+# get all search results
+results = soup.find_all('div', {'class': 'g'})
 
-if response.status_code == 200:
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    #scrape top 10 results
-    results = soup.find_all('div', attrs={'class': 'r'})
-    for result in results[:10]:
-        link = result.find('a')
-        print(link.get('href'))
+# print the top 10 results
+print("Top 10 results for " + query + ":")
+for result in results[:10]:
+    # get the title of the search result
+    title = result.find('h3')
+    if title:
+        print(title.text)
